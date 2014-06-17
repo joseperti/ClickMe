@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Developers</title>
+	<style type="text/css">
+
+	body{
+		background-color: #9ecbb3;
+		color: white;
+		font-weight: bold;
+		font-family: Verdana;
+	}
+	.imagen{
+		border-radius: 50px;
+		margin:40px;
+	}
+	.datos{
+		background-color: #0666cc;
+		border-radius: 10px;
+		height: 100px;
+		width: 400px;
+	}
+	#carta{
+		background-color: #83b5dd;
+		border-radius: 10px;
+		height: 500px;
+		width: 800px;
+	}
+
+	</style>
+	<script type="text/javascript" src="../script/jquery.js"></script>
+	<script type="text/javascript">
+
+	function datos_mostrar(nombre){
+		$('#'+nombre).show('slow');
+	}
+
+	$(document).ready(function(){
+		setTimeout(function(){
+			datos_mostrar("dani_datos");},500);
+		setTimeout(function(){datos_mostrar("jose_datos");},1000);
+		setTimeout(function(){datos_mostrar("carta");},1500);
+	});
+
+	</script>
+</head>
+<body>
+	<center>
+	<a href="../index/">
+	<img src="../recursos/logo1.png"></img><img src="../recursos/hand.png"></img>
+	</a>
+	<table>
+	<tr>
+	<td><center><img id="dani" class="imagen" src="img/ninguno.png">
+	</td><td>
+	<center>
+	<div class="datos" id="dani_datos" hidden>
+	<u>Sujeto 1</u>
+	<br>
+	Twitter: <a>none</a>
+	<br>
+	Email: <a>none</a>
+	</div>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	<center>
+	<div class="datos" id="jose_datos" hidden>
+	<u>Sujeto 2</u>
+	<br>
+	Twitter: <a>none</a>
+	<br>
+	Email: <a>none</a>
+	</div>
+	</td><td>
+	<center>
+	<img id="jose" class="imagen" src="img/ninguno.png">
+	</td>
+	</tr>
+	</table>
+	<div id="carta" hidden>
+	<u>To users:</u><br><br>
+	<center>
+		Hi! We´re working to make this website better. If you want to send us information about advices or improvements
+		please contact with our email. Greetings!
+	</div>
+</body>
+</html>

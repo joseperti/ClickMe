@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ClickMe!</title>
+	<script type="text/javascript" src="../script/jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+	<style type="text/css">
+	body{
+		background-color: #9eccb3;
+	}
+	.centrado{
+		width:1000px;
+		height:520px;
+		border-width: 10px;
+		border-style: solid;
+		border-color: #9eccb3;
+	}
+	.img{
+		border-width: 10px;
+		border-style: solid;
+		border-color: #ddcccc;
+		margin:50px;
+		width:420px;
+		height: 420px;
+		background-color: #006bb6;
+	}
+	.img:hover{
+		border-color: #aa88aa;
+	}
+	.foto{
+
+	}
+	.pie{
+		width: 100%;
+		background-color: white;
+		position: fixed;
+		bottom: 0px;
+	}
+	</style>
+	<script type="text/javascript">
+
+	function obtener_imagen(id,posicion){
+		if (posicion == "#img_izq"){
+			var pos_str = "img_izq";
+		}else{
+			var pos_str = "img_der";
+		}
+
+		$.post('../php/imagen_aleatoria.php',{id_restriccion:id},function(data){
+			$(posicion).html('<CENTER><img src="../img/'+data+'.jpg" value="'+data+'" id="'+pos_str+'_imagen" width="400" height="400" class="foto">');
+		});
+	}
+
+	$(document).ready(function(){
+		$.post('../php/imagen_aleatoria.php',{id_restriccion:"0"},function(data){
+			$('#img_izq').html('<CENTER><img src="../img/'+data+'.jpg" value="'+data+'" id="img_izq_imagen" width="400" height="400" class="foto">');
+
+			obtener_imagen($('#img_izq_imagen').attr('value'),'#img_der');
+		});
+		$.post('../php/estadisticas.php',function(data){});
+	});
+	
+	function seleccionar(posicion){
+		if (posicion=="#img_izq"){
+			$.post('../php/seleccionar_imagen.php',{id:$('#img_izq_imagen').attr('value')},function(data){
+
+			});
+		}else{
+			$.post('../php/seleccionar_imagen.php',{id:$('#img_der_imagen').attr('value')},function(data){
+
+			});
+		}
+		if (posicion=="#img_izq"){
+			$('#img_der').html('<CENTER><img src="../img/loading1.gif">');
+			obtener_imagen($('#img_izq_imagen').attr('value'),'#img_der');
+		}else{
+			$('#img_izq').html('<CENTER><img src="../img/loading1.gif">');
+			obtener_imagen($('#img_der_imagen').attr('value'),'#img_izq');
+		}
+		
+	}
+
+	</script>
+</head>
+<body>
+	<CENTER>
+	<img src="../recursos/logo1.png"></img><img src="../recursos/hand.png"></img>
+	<div class="centrado">
+		<CENTER>
+		<table>
+			<tr>
+				<td>
+					<div id="img_izq" class="img" onclick="seleccionar('#img_izq')">
+						<CENTER><img src="../img/loading1.gif">
+					</div>
+				</td>
+				<td>
+					<div id="img_der" class="img" onclick="seleccionar('#img_der')">
+						<CENTER><img src="../img/loading1.gif">
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<br><br>
+	<div class="pie">
+		<b><a href="../ranking/">Ranking</a> - <a href="../upload/">Upload picture!</a> - <a href="../search/">Search</a> - <a href="../developers/">Developers</a>
+
+		</b>
+	</div>
+</body>
+</html>

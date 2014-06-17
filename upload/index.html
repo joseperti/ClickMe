@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ClickMe!</title>
+	<meta charset="UTF-8"></meta>
+	<script type="text/javascript" src="../script/jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+	<style type="text/css">
+	body{
+		background-color: #9eccb3;;
+	}
+	</style>
+	<script type="text/javascript">
+
+		function subida_imagen(){
+			var archivos = document.getElementById("imagen");
+			  var archivo = archivos.files;
+			  var data = new FormData();
+			  for(i=0; i<archivo.length; i++){
+			    data.append('archivo'+i,archivo[i]);
+			  }
+
+			  $.ajax({
+			    url:'../php/subir_archivo.php', //Url a donde la enviaremos
+			    type:'POST', //Metodo que usaremos
+			    contentType:false, //Debe estar en false para que pase el objeto sin procesar
+			    data:data, //Le pasamos el objeto que creamos con los archivos
+			    processData:false, //Debe estar en false para que JQuery no procese los datos a enviar
+			    cache:false //Para que el formulario no guarde cache
+			  }).done(function(msg){
+			    alert("Uploaded correctly. You can see the picture´s stats at 'Search'");
+			    location.href = "../index/";
+			  });
+		}
+
+		function subir_archivo(){
+			$('#boton_up').html('<img src="../img/loading1.gif"></img>');
+			$.post('../php/nueva_imagen.php',{identificador:$('#identificador').val()},
+				function(data){
+					subida_imagen();
+			});
+			  
+		}
+
+		function readURL(input) {
+	        if (input.files && input.files[0]) {
+	            var reader = new FileReader();
+
+	            reader.onload = function (e) {
+	                $('#preview').attr('src', e.target.result);
+	                $('#preview').show('slow');
+	            }
+
+	            reader.readAsDataURL(input.files[0]);
+	        }
+	    }
+
+	</script>
+	<style type="text/css">
+
+	#preview{
+		border-style: dashed;
+		border-width: 10px;
+		border-color: #83b5dd;
+	}
+
+	</style>
+</head>
+<body>
+	<center>
+	<a href="../index/">
+	<img src="../recursos/logo1.png"></img><img src="../recursos/hand.png"></img>
+	</a>
+	<br><br><br>
+	Identifier: <input type="text" id="identificador"></input><br>
+	(you could use it to see the picture´s stats)<br> <br>
+	<input id="imagen" type="file" accept="image/*" class="btn-info" onchange="readURL(this);"></input><br>
+	<img width="400" height="400" id="preview" hidden></img><br>
+	<div id="cargados"></div><br>
+	<div id="boton_up">
+	<button onclick="subir_archivo()">Upload</button>
+	</div>
+	
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ClickMe!</title>
+	<script type="text/javascript" src="script/jquery.js"></script>
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<style type="text/css">
+	body{
+		background-color: #9eccb3;
+	}
+	.centrado{
+		position: absolute; 
+		top:60%; left:50%; 
+		width:400px;
+		margin-left:-200px;
+		height:300px;
+		margin-top:-150px;
+	}
+	#arriba{
+		position: absolute;
+		top: 5%;
+		right: 0px;
+		height: 300px;
+		width: 300px;	
+		top: 10%;
+		-webkit-box-shadow: 0px 7px 9px 8px rgba(6,102,204,1);
+		-moz-box-shadow: 0px 7px 9px 8px rgba(6,102,204,1);
+		box-shadow: 0px 7px 9px 8px rgba(6,102,204,1);
+	}
+	#abajo{
+		position: absolute;
+		top: 40%;
+		left: 0px;
+		height: 300px;
+		width: 300px;
+		-webkit-box-shadow: 0px 7px 9px 8px rgba(6,102,204,1);
+		-moz-box-shadow: 0px 7px 9px 8px rgba(6,102,204,1);
+		box-shadow: 0px 7px 9px 8px rgba(6,102,204,1);
+	}
+	#boc_arriba{
+		position: absolute;
+		height:200px;
+		width:300px;
+		left: 500px;
+	}
+	#boc_abajo{
+		position: absolute;
+		height:150px;
+		width:300px;
+		right: 500px;
+		top: 400px;
+	}
+	</style>
+	<script type="text/javascript">
+	var pd = -100;
+	$(document).ready(function(){
+		setTimeout(function(){
+			animacion();
+			setTimeout(function(){
+				$('#boc_abajo').show();
+				$('#boc_arriba').show();
+			},1500);
+		},2000);
+	});
+	function animacion(){
+		$("#arriba").animate({"left": "260px"},1500);
+		$("#abajo").animate({"left": "800px"},1500);
+	}
+
+	</script>
+</head>
+<body>
+	<div class="centrado">
+		<center>
+		<a class="btn btn-info" href="/index/" ><b>ClickMe!</b></a>
+	</div>
+	<img id="arriba" src="recursos/open_2.png"></img>
+	<img id="boc_arriba" src="recursos/open_text_2.png" hidden></img>
+	<img id="abajo" src="recursos/open_1.png"></img>
+	<img id="boc_abajo" src="recursos/open_text_1.png" hidden></img>
+</body>
+</html>

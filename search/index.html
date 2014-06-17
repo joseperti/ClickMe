@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Search in ClickMe!</title>
+	<meta charset="UTF-8"></meta>
+	<script type="text/javascript" src="../script/jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+	<style type="text/css">
+	.input{
+		width: 30%;
+	}
+	body{
+		background-color: #9eccb3;
+	}
+	.resultado{
+		background-color: #A79E70;
+		width: 100%;
+		color:white;
+	}
+	</style>
+	<script type="text/javascript">
+
+	function buscar(){
+		$('#resultado').html("<img src='../img/loading1.gif'></img>");
+		var identificador = $('#identificador').val();
+		$.post('../php/buscar_identificador.php',{identificador:identificador},function(data){
+			$('#resultado').html("<br>"+data);
+
+		});
+
+	}
+
+	</script>
+</head>
+<body>
+
+<center>
+<CENTER>
+	<a href="../index/">
+	<img src="../recursos/logo1.png"></img><img src="../recursos/hand.png"></img>
+	</a>
+<br><br>
+<div class="input-group input">
+	<input class="form-control" id="identificador" placeholder="Identifier"></input>
+	<span class="input-group-btn"><button class="btn btn-default" onclick="buscar()">Search</button></span>
+</div>
+<br>
+<b>
+<div id="resultado" class="resultado">
+</div>
+</b>
+</body>
+</html>

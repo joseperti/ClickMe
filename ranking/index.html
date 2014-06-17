@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Search in ClickMe!</title>
+	<meta charset="UTF-8"></meta>
+	<script type="text/javascript" src="../script/jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+	<style type="text/css">
+	body{
+		background-color: #9eccb3;
+	}
+	</style>
+	<script type="text/javascript">
+	$.get('../php/mas_clicados_siempre.php',function(data){
+		$("#resultado").html(data);
+	});
+	</script>
+</head>
+<body>
+<center>
+<a href="../index/">
+<img src="../recursos/logo1.png"></img><img src="../recursos/hand.png"></img>
+</a>
+<br><br>
+<div id="resultado"></div>
+</html>
